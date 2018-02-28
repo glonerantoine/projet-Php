@@ -32,23 +32,21 @@
 			$mdp = $_POST['password_login'];
 
 
-			$requete1 = "SELECT * FROM inscription WHERE pseudo ='$pseudo' ";
-			$requete2 = "SELECT * FROM inscription WHERE motdepasse ='$mdp' ";
+			$requete = "SELECT * FROM inscription WHERE pseudo ='$pseudo' ";
 
-			$resultat1 = mysqli_query($connection, $requete1) or die ('ERREUR SQL : ' . $requete1 . mysqli_error($connection));
-			$resultat2 = mysqli_query($connection, $requete2) or die ('ERREUR SQL : ' . $requete2 . mysqli_error($connection));
-
-
-			$row = mysqli_fetch_array($resultat1);
-			if (($resultat1 -> num_rows) && ($resultat2-> num_rows)){
-				if (password_verify($row['mdp'])) {
+			$resultat = mysqli_query($connection, $requete) or die ('ERREUR SQL : ' . $requete . mysqli_error($connection));
+			
+			$row = mysqli_fetch_array($resultat);
+			if ($resultat -> num_rows === 1){
+				if (password_verify($mdp, $row['motdepasse'])) {
 				echo "vous etes connectés";
 				header('Location: /home.php');
-}
+
 			}else{
 				echo "Pseudo ou/et mot de passe incorrect";
 			}
 		}
+	}
 			?>	
 		</form>
 		<script src="app.js"></script>
