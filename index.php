@@ -1,12 +1,19 @@
+<?php session_start(); ?>
 
-	<div id="conteneur">
-		<div id="menu">		
-			<a href="home.php">Home</a>
-			<a href="apropos.php">A Propos</a>
-			<a href="evenement.php">Evenements</a>
-			<a href="blog.php">Blog</a>
-			<a href="login.php">Login</a>
-			<a href="inscription.php">Inscription</a>
-			<a href="contact.php">Contact</a>
-		</div>
-		<script src="app.js"></script>
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>	
+	<?php include "home.php" ?>	
+	<h1>Bienvenue sur le projet-PhP</h1>
+	<p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d'attente. L'avantage de le mettre en latin est que l'opérateur sait au premier coup d'oeil que la page contenant ces lignes n'est pas valide, et surtout l'attention du client n'est pas dérangée par le contenu, il demeure concentré seulement sur l'aspect graphique.</p>
+
+
+	<script src="app.js"></script>
+</body>
+
+</html>

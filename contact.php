@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <meta charset="utf-8">
 <html>
@@ -7,13 +8,15 @@
 </head>
 
 <body>	
-	<?php include "index.php"; ?>
+	<?php include "home.php";
+	include "config.php"; ?>
 	<div id="contact">	
 
 
 		<h1>Contact</h1>
 
-		<form action="contact.php">
+		<form action="contact.php" method="POST">
+			
 
 
 			<p>Objet :</p>
@@ -42,39 +45,34 @@
 
 			<?php
 
-			$servername = "localhost";
-			$username = "root";
-			$password = "antoine";
-			$dbname = "projetphp";
-            //variables pour récupérer les données
-            // $objet = $_POST['objet'];
-            // $message = $_POST['message'];
-            // $thematique = $_POST['thematique'];
-            // $compte = $_POST['compte'];
-            // $age = $_POST['age'];
-            // Créer la connection
-			$connection = new mysqli($servername, $username, $password, $dbname);
-            // Checker la connection
-
             //on fait notre requète
-			if ($_POST) {
+			if (!empty($_POST)) {
 
 				$mail = $_POST['objet'];
 				$message = $_POST['message'];
 				$date = $_POST['date'];
 				$thema = $_POST['thematique'];
 				$compte = $_POST['compte'];
-				$interdit= $_POST["objet"];
-				$pos = stripos($interdit, 'simplon');
+
+				$pos = stripos($mail, 'simplon');
 				if($pos !== false){
 					echo "Mot non valide";
+				}else{
+					echo "votre message a été enregistré";
+
+					 // Checker la connection
+
+            if ($connection->connect_error) {
+                die('Connection failed: '.$connection->connect_error);
 				}
+				
 				$requete = "INSERT INTO contact VALUES(NULL, '$mail', '$message', '$thema', '$compte', '$date')";
 				$resultat = mysqli_query($connection, $requete) or die('ERREUR SQL : '. $requete . mysqli_error($connection));
+			}	
 			}
 			?>
 
-		</form>
+    </form>
 	</div>
 	<script src="app.js"></script>
 </body>

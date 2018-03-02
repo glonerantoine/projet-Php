@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!doctype html>
 <meta charset="utf-8">
 <html>
@@ -7,7 +9,7 @@
 </head>
 
 <body>
-	<?php include "index.php" ?>	
+	<?php include "home.php" ?>	
 	<h1>A Propos</h1>
 
 

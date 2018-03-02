@@ -1,17 +1,38 @@
-<!doctype html>
-<html>
+<div id="conteneur">
+	<div id="menu">		
+		<a href="index.php">Home</a>
+		<a href="apropos.php">A Propos</a>
+		<a href="blog.php">Blog</a>
+		<?php
+		if(!empty($_SESSION['pseudo'])){
+			echo '<a href="evenement.php">Evenement</a>';
+		}else{
+			echo '<a href="login.php">Evenement</a>';
+		}
+		?></a>
+		<a href="contact.php">Contact</a>
 
-<head>
-	<link rel="stylesheet" type="text/css" href="style.css">
-</head>
+		<?php
+				if (!isset($_SESSION["pseudo"])){ // isset défini
+				?>
 
-<body>	
-<?php include "index.php" ?>	
-	<h1>Home</h1>
-	<p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d'attente. L'avantage de le mettre en latin est que l'opérateur sait au premier coup d'oeil que la page contenant ces lignes n'est pas valide, et surtout l'attention du client n'est pas dérangée par le contenu, il demeure concentré seulement sur l'aspect graphique.</p>
+					<a href="login.php">Login</a>
+				<?php } ?>
 
 
-<script src="app.js"></script>
-</body>
+		<?php 
+			if (!isset($_SESSION["pseudo"])) { // !isset pas défini
+				echo "<a href='inscription.php'>Inscription</a> ";
+			} ?>
 
-</html>
+
+		<?php
+			if (isset($_SESSION["pseudo"])){ // isset défini
+				echo "Bonjour : " . $_SESSION["pseudo"]; ?>
+
+				<a href="deconnexion.php">Déconnexion</a>
+
+			<?php } ?>
+	</div>
+</div>
+

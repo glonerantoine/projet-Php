@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <meta charset="utf-8">
 <html>
@@ -7,7 +8,9 @@
 </head>
 
 <body>	
-	<?php include "index.php"; ?>
+	<?php include "home.php"; 
+	include "config.php";
+	?>
 
 	<h1>Login</h1>
 
@@ -20,14 +23,7 @@
 		<?php
             // requete
 		if(!empty($_POST)){
-			$servername = "localhost";
-			$username = "root";
-			$password = "antoine";
-			$dbname = "projetphp";
-
-            // Créer la connection
-			$connection = new mysqli($servername, $username, $password, $dbname);
-
+	
 			$pseudo = $_POST['pseudo_login'];
 			$mdp = $_POST['password_login'];
 
@@ -37,10 +33,12 @@
 			$resultat = mysqli_query($connection, $requete) or die ('ERREUR SQL : ' . $requete . mysqli_error($connection));
 			
 			$row = mysqli_fetch_array($resultat);
+
 			if ($resultat -> num_rows === 1){
 				if (password_verify($mdp, $row['motdepasse'])) {
+					$_SESSION["pseudo"] = $pseudo;
+				header('Location: /index.php');
 				echo "vous etes connectés";
-				header('Location: /home.php');
 
 			}else{
 				echo "Pseudo ou/et mot de passe incorrect";

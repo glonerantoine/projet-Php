@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <meta charset="utf-8">
 <html>
@@ -7,7 +8,9 @@
 </head>
 
 <body>	
-	<?php include "index.php";?>
+	<?php include "home.php";
+		include "config.php" ;
+		?>
 
 	<h1>Sign Up</h1>
 	<h2>Pseudo</h2>
@@ -22,16 +25,7 @@
 
 		<button type="submit">Save</button>
 	</form>
-	<?php
-	$servername = "localhost";
-	$username = "root";
-	$password = "antoine";
-	$dbname = "projetphp";
-
-            // Créer la connection
-	$connection = new mysqli($servername, $username, $password, $dbname);
-
-
+	<?php 
             // requete
 	if($_POST){
 
@@ -58,7 +52,9 @@
 
 
 	}
-	?>	
+	?>
+
+		
 	<script src="app.js"></script>
 </body>
 
